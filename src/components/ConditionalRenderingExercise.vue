@@ -1,5 +1,5 @@
 <template>
-  <div class="condtional-rendering-exercise container">
+  <div class="conditional-rendering-exercise container">
     <div class="row">
       <div class="col-12">
         <div class="border p-1">
@@ -9,8 +9,7 @@
             value to false. The entire element should no longer render to the
             screen.
           </p>
-          <!-- add code to element below -->
-          <div class="player-card text-center">
+          <div class="player-card text-center" v-if="(showPlayer = true)">
             <div>
               <img :src="state.player.photo" />
             </div>
@@ -38,7 +37,7 @@
             toggle the value to true to get it to show up again.
           </p>
           <!-- add code to element below -->
-          <div class="player-card text-center">
+          <div class="player-card text-center" v-if="state.showPlayer">
             <div>
               <img :src="state.player.photo" />
             </div>
@@ -67,23 +66,23 @@
             to add another condition.
           </p>
           <!-- v-if comparing grade and 90 -->
-          <div>
+          <div v-if="state.grade > 90 && state.grade < 100">
             <p>The grade is 'A'.</p>
           </div>
           <!-- v-else-if comparing grade and 80 -->
-          <div>
+          <div v-else-if="state.grade > 80 && state.grade < 90">
             <p>The grade is 'B'.</p>
           </div>
           <!-- v-else-if comparing grade and 70 -->
-          <div>
+          <div v-else-if="state.grade > 70 && state.grade < 80">
             <p>The grade is 'C'.</p>
           </div>
           <!-- v-else-if comparing grade and 60 -->
-          <div>
+          <div v-else-if="state.grade > 60 && state.grade < 70">
             <p>The grade is 'D'.</p>
           </div>
           <!-- v-else to display if all the others fail -->
-          <div>
+          <div v-else>
             <p>The grade is 'F'.</p>
           </div>
         </div>
@@ -125,12 +124,12 @@
 import { reactive } from "vue";
 
 export default {
-  name: "condtional-rendering-exercise",
+  name: "conditional-rendering-exercise",
   setup() {
     // NOTE typically state will be abstracted to a global AppState
     const state = reactive({
-      //add a property to toggle the player-card here.
-      //add a property to set the number value here.
+      showPlayer: true,
+      grade: 95,
       player: {
         photo: "https://robohash.org/Mick",
         name: "Mick",
